@@ -1,41 +1,31 @@
-package org.automation.App;
+package org.automation.app;
 
-import org.automation.Util.ConfigReader;
+import org.automation.util.ConfigReader;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.stereotype.Component;
 
 @SpringBootApplication
 @ComponentScan(basePackages={"org.automation.*"})
-public class SeleniumBootApplication {
+public class SeleniumBootStarter {
 
-@Autowired
-ConfigReader configReader;
-
-
-@Autowired
-InitiateDriver initiateDriver;
+	@Autowired
+	ConfigReader configReader;
 
     public static void main(String[] args) {
-    	SpringApplication.run(SeleniumBootApplication.class, args);
-    	   initiateDriver.createDriver();
-       }
+    	ApplicationContext ctx = SpringApplication.run(SeleniumBootStarter.class, args);
+    	
+    	final InitiateDriver initiateDriver = ctx.getBean(InitiateDriver.class);
+    	initiateDriver.createDriver();
+    }
     
    @Bean
-   public String cassandraOps(){
-	   String abc = configReader.getAUT_URL();
-	   System.out.println("Page title is: " + abc);
-	   return abc;
-   }
-   
-  @Bean
    public WebDriver getDriver(){
 	   return new FirefoxDriver();
    }
-   
 }

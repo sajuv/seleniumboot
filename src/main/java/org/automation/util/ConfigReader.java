@@ -1,8 +1,7 @@
-package org.automation.Util;
+package org.automation.util;
 
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
@@ -12,6 +11,7 @@ import org.springframework.stereotype.Component;
 public class ConfigReader {
 
 	private String abcd;
+	private String AUT_URL;
 	
 	public String getAbcd() {
 		return abcd;
@@ -21,9 +21,6 @@ public class ConfigReader {
 		this.abcd = abcd;
 	}
 
-	private String AUT_URL;
-
-
 	public String getAUT_URL() {
 		return AUT_URL;
 	}
@@ -31,5 +28,4 @@ public class ConfigReader {
 	public void setAUT_URL(String aUT_URL) {
 		AUT_URL = aUT_URL;
 	}
-	
 }
