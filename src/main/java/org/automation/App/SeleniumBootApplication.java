@@ -28,19 +28,14 @@ InitiateDriver initiateDriver;
     
    @Bean
    public String cassandraOps(){
-	   String abc=configReader.getAUT_URL();
-	   System.out.println("Page title is: " + configReader.getAUT_URL());
+	   String abc = configReader.getAUT_URL();
+	   System.out.println("Page title is: " + abc);
 	   return abc;
    }
    
   @Bean
    public WebDriver getDriver(){
-	
-	   WebDriver driver = new FirefoxDriver();
-	
-	   return driver;
+	   return new FirefoxDriver();
    }
-   
-  
    
 }
