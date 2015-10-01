@@ -1,6 +1,6 @@
-package org.automation.App;
+package org.automation.app;
 
-import org.automation.Util.ConfigReader;
+import org.automation.util.ConfigReader;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,17 +17,14 @@ public class InitiateDriver {
   
   @Autowired
   WebDriver driver;
-  
 	
   public void createDriver(){
-		
 	  // System.out.println("Page title is: " + configReader.getAUT_URL());
      driver.get("http://www.google.com");
     
      WebElement element = driver.findElement(By.name("q"));
 
      element.sendKeys("Cheese!");
-
      element.submit();
 
      System.out.println("Page title is: " + driver.getTitle());
@@ -39,11 +36,9 @@ public class InitiateDriver {
              return d.getTitle().toLowerCase().startsWith("cheese!");
          }
      });
-
    
      System.out.println("Page title is: " + driver.getTitle());
-     
-     
-     driver.quit();
+
+     // driver.quit();
 	}
 }
