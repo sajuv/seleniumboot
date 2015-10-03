@@ -17,13 +17,32 @@ public class SeleniumBootStarter {
 	@Autowired
 	ConfigReader configReader;
 
+	private static ApplicationContext ctx;
+	
     public static void main(String[] args) {
-    	ApplicationContext ctx = SpringApplication.run(SeleniumBootStarter.class, args);
+    	ctx = SpringApplication.run(SeleniumBootStarter.class, args);
     	
-    	final InitiateDriver initiateDriver = ctx.getBean(InitiateDriver.class);
-    	initiateDriver.createDriver();
+    	InitiateDriver initDriver = getBean(InitiateDriver.class);
+    	
+    	initDriver.createDriver();
+    	
     }
     
+   /** 
+    * <b> Returns the Bean from the {@link ApplicationContext} loaded at Startup using </b>
+    * <ul>
+    * <li>{@link org.springframework.context.annotation.Bean} or
+    * </li>
+    * <li>{@link org.springframework.stereotype.Component} and its subtypes</li>
+    * </ul>
+    * @author balaji i
+    * @param beanType
+    * @return bean
+    */
+   public static <T> T getBean(Class<T> beanType){
+   		return ctx.getBean(beanType);
+   } 
+   
    @Bean
    public WebDriver getDriver(){
 	   return new FirefoxDriver();
